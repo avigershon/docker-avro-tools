@@ -1,4 +1,4 @@
-FROM java:7
+FROM confluentinc/cp-kafka:5.0.1
 MAINTAINER coderfi@gmail.com
 
 ENV JQ_VERSION='1.5'

@@ -1,4 +1,4 @@
-FROM dockerfile/java:oracle-java8
+FROM java:7
 MAINTAINER coderfi@gmail.com
 
 ENV JQ_VERSION='1.5'

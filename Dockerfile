@@ -11,6 +11,10 @@ RUN mkdir -p /share \
 WORKDIR /share
 
 ADD avro-tools-runner /usr/local/bin/avro-tools-runner
+ADD job.sh /usr/local/bin/job.sh
+
+RUN chmod +x /usr/local/bin/job.sh
+
 ENTRYPOINT ["avro-tools-runner"]
 
 CMD ["--help"]

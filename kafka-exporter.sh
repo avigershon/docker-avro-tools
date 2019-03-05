@@ -16,7 +16,8 @@ do
           s=${s#*"$delimiter"};
       done;
 
-      if ["${array[0]}" == "__confluent"]; then
+      if [ $(echo ${array[0]} | cut -c1-2) = "__" ]; then
+        
         echo "System topic - aborting..."
 
       else

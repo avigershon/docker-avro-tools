@@ -15,6 +15,12 @@ ADD job.sh /usr/local/bin/job.sh
 ADD kafka-exporter.sh /usr/local/bin/kafka-exporter.sh
 ADD kafka-importer.sh /usr/local/bin/kafka-importer.sh
 
+RUN \
+    apk add --no-cache ca-certificates && \
+    apk add --no-cache --virtual .build-deps curl && \
+    curl https://dl.minio.io/client/mc/release/linux-amd64/mc > /usr/bin/mc && \
+    chmod +x /usr/bin/mc && apk del .build-deps
+    
 RUN chmod +x /usr/local/bin/job.sh
 RUN chmod +x /usr/local/bin/kafka-exporter.sh
 RUN chmod +x /usr/local/bin/kafka-importer.sh

@@ -17,7 +17,7 @@ do
       done;
 
       if [ $(echo ${array[0]} | cut -c1-2) = "__" ]; then
-        
+
         echo "System topic - aborting..."
 
       else
@@ -29,7 +29,7 @@ do
           -H 'Accept: application/json' \
           -d '{
           "connector.class": "io.confluent.connect.s3.S3SinkConnector",
-          "schema.compatibility": "FULL",
+          "schema.compatibility": "NONE",
           "flush.size": "6",
           "topics": "'${topic}'",
           "tasks.max": "1",
@@ -39,6 +39,8 @@ do
           "partitioner.class": "io.confluent.connect.storage.partitioner.DefaultPartitioner",
           "schema.generator.class": "io.confluent.connect.storage.hive.schema.DefaultSchemaGenerator",
           "storage.class": "io.confluent.connect.s3.storage.S3Storage",
+          "value.converter.schemas.enable": true,
+          "value.converter": "org.apache.kafka.connect.json.JsonConverter",
           "s3.bucket.name": "'${array[0]}'"
         }' http://v1-cp-kafka-connect:8083/connectors/${topic}.s3.sink/config
 

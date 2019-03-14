@@ -7,6 +7,8 @@ ENV AVRO_TOOLS_JAR /usr/share/java/avro-tools-${AVRO_VERSION}.jar
 RUN mkdir -p /share \
  && cd /usr/share/java \
  && wget http://mirrors.gigenet.com/apache/avro/avro-${AVRO_VERSION}/java/avro-tools-${AVRO_VERSION}.jar
+ && wget https://dl.minio.io/client/mc/release/linux-amd64/mc -P /usr/local/bin/
+ && chmod +x /usr/local/bin/mc
 
 WORKDIR /share
 

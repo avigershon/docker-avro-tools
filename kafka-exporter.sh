@@ -1,7 +1,9 @@
 #!/bin/bash
 
 MINIO_URL="$1"
-TOPIC_PREFIX='[A-Za-z0-9]\+\.[A-Za-z0-9]\+\.[A-Za-z0-9]\+' #"$2"
+PREFIX="$2"
+
+TOPIC_PREFIX="^${PREFIX}\+\.[A-Za-z0-9]\+\.[A-Za-z0-9]\+" #"$2"
 
 for topic in $(/usr/bin/kafka-topics  --list --zookeeper v1-cp-zookeeper:2181  | grep  $TOPIC_PREFIX)
 do
